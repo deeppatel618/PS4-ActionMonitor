@@ -4,10 +4,10 @@ class stateManager
 public:
     int prevValue, *currentValue, value;
     int threshold = 0;
-    int buffer=0;
-    stateManager(int *value, int threshold = 0,int buffer=0)
+    int buffer = 0;
+    stateManager(int *value, int threshold = 0, int buffer = 0)
     {
-        this->buffer=buffer;
+        this->buffer = buffer;
         this->threshold = threshold;
         currentValue = value;
         prevValue = *value;
@@ -19,7 +19,8 @@ public:
         {
             if (*currentValue != 0 && *currentValue != 1 && abs(*currentValue - prevValue) < threshold)
                 return false;
-            if(abs(*currentValue)<buffer) *currentValue=0;
+            if (abs(*currentValue) < buffer)
+                *currentValue = 0;
             prevValue = *currentValue;
             value = *currentValue;
             return true;
@@ -33,12 +34,12 @@ public:
     stateManager *currentValue1;
     stateManager *currentValue;
     stateManager *currentState;
-    Button(int *btn, int *btnValue = &defaultZeroAnalog,int *btnValue1=&defaultZeroAnalog)
+    Button(int *btn, int *btnValue = &defaultZeroAnalog, int *btnValue1 = &defaultZeroAnalog)
     {
         SetButton();
-        this->currentValue1=new stateManager(btnValue1,5,10);
+        this->currentValue1 = new stateManager(btnValue1, 5, 10);
         this->currentState = new stateManager(btn);
-        this->currentValue = new stateManager(btnValue, 5,10);
+        this->currentValue = new stateManager(btnValue, 5, 10);
     }
     Button(){};
     void SetButton();
@@ -87,7 +88,7 @@ public:
         }
     }
 };
-Button *allButton[20];
+Button *allButton[25];
 int buttonIndex = 0;
 void Button::SetButton()
 {
