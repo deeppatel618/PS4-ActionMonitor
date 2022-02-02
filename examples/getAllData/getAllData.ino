@@ -195,5 +195,5 @@ void touchpadReleased()
 }
 void base(int x,int y,int r)
 {
-  Serial.println("X="String(x)+" ,Y="+String(y)+" ,R="+String(r));
+  Serial.println("X="+String(x)+" ,Y="+String(y)+" ,R="+String(r));
 }
