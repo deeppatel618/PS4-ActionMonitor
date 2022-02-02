@@ -1,5 +1,5 @@
 int defaultZeroAnalog = 0;
-class stateManager
+class stateManager//This class is used to store state of button and its value with little proccessing.
 {
 public:
     int prevValue, *currentValue, value;
@@ -15,14 +15,20 @@ public:
 
     bool check()
     {
-        if (prevValue != *currentValue)
+        if (prevValue != *currentValue )
         {
+            
             if (*currentValue != 0 && *currentValue != 1 && abs(*currentValue - prevValue) < threshold)
                 return false;
-            if (abs(*currentValue) < buffer)
-                *currentValue = 0;
             prevValue = *currentValue;
-            value = *currentValue;
+            
+            if (abs(*currentValue) < buffer){
+                if(value==0) return false;
+                value=0;
+            }
+            else{
+                value = *currentValue;
+            }
             return true;
         }
         return false;
@@ -37,16 +43,16 @@ public:
     Button(int *btn, int *btnValue = &defaultZeroAnalog, int *btnValue1 = &defaultZeroAnalog)
     {
         SetButton();
-        this->currentValue1 = new stateManager(btnValue1, 5, 10);
+        this->currentValue1 = new stateManager(btnValue1, 7, 10);
         this->currentState = new stateManager(btn);
-        this->currentValue = new stateManager(btnValue, 5, 10);
+        this->currentValue = new stateManager(btnValue, 7, 10);
     }
     Button(){};
     void SetButton();
     void (*buttonPressed)() = none;
     void (*buttonReleased)() = none;
-    void (*buttonValueChange)(int v) = none;
-    void (*buttonValueChange1)(int v) = none;
+    void (*buttonValueChangeX)(int v) = none;
+    void (*buttonValueChangeY)(int v) = none;
     void attachRelease(void (*f)())
     {
         this->buttonReleased = f;
@@ -55,23 +61,23 @@ public:
     {
         this->buttonPressed = f;
     }
-    void attachAnalog(void (*f)(int v))
+    void attachAnalogX(void (*f)(int v))
     {
-        this->buttonValueChange = f;
+        this->buttonValueChangeX = f;
     }
-    void attachAnalog1(void (*f)(int v))
+    void attachAnalogY(void (*f)(int v))
     {
-        this->buttonValueChange1 = f;
+        this->buttonValueChangeY = f;
     }
     void update()
     {
         if (currentValue->check())
         {
-            buttonValueChange(currentValue->value);
+            buttonValueChangeX(currentValue->value);
         }
         if (currentValue1->check())
         {
-            buttonValueChange1(currentValue1->value);
+            buttonValueChangeY(currentValue1->value);
         }
         if (currentState->check())
         {
@@ -82,8 +88,8 @@ public:
             else
             {
                 buttonReleased();
-                buttonValueChange(0);
-                buttonValueChange1(0);
+                // buttonValueChangeX(0);
+                // buttonValueChangeY(0);
             }
         }
     }

@@ -18,10 +18,12 @@ Button r1(&Ps4.r1);
 Button l2(&Ps4.l2,&Ps4.l2Value);
 Button r2(&Ps4.r2,&Ps4.r2Value);
 
-Button leftJoystick(&Ps4.l3,&Ps4.lStickX,&Ps4.lStickY);
-Button rightJoystick(&Ps4.r3,&Ps4.rStickX,&Ps4.rStickY);
+Button lJoystick(&Ps4.l3,&Ps4.lStickX,&Ps4.lStickY);
+Button rJoystick(&Ps4.r3,&Ps4.rStickX,&Ps4.rStickY);
 
 Button share(&Ps4.share);
 Button options(&Ps4.options);
 Button psButton(&Ps4.psButton);
 Button touchpad(&Ps4.touchpad);
+
+Movement leftJoystick(&lJoystick,&r2,&l2);
