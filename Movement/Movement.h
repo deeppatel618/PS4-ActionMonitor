@@ -1,8 +1,8 @@
-//This file is used to combine joystick , l2 and r2 button to get x,y and r for movement of any robot
-void joyStickX(int v);
-void joyStickY(int v);
-void l2Btn(int v);
-void r2Btn(int v);
+//This file is used to combine left joystick , l2 and r2 button to get x,y and r for movement of any robot
+void _joyStickX(int v);
+void _joyStickY(int v);
+void _l2Btn(int v);
+void _r2Btn(int v);
 class Movement
 {
 public:
@@ -21,10 +21,10 @@ public:
     }
     void attachAll()
     {
-        joyStick->attachAnalogX(joyStickX);
-        joyStick->attachAnalogY(joyStickY);
-        r2->attachAnalogX(r2Btn);
-        l2->attachAnalogX(l2Btn);
+        joyStick->attachAnalogX(_joyStickX);
+        joyStick->attachAnalogY(_joyStickY);
+        r2->attachAnalogX(_r2Btn);
+        l2->attachAnalogX(_l2Btn);
     }
     void m_joyStickX(int v)
     {
@@ -71,20 +71,20 @@ Movement *movementObject;
 void Movement::attachObject(){
     movementObject=this;
 }
-void joyStickX(int v)
+void _joyStickX(int v)
 {
     movementObject->m_joyStickX(v);
 }
-void joyStickY(int v)
+void _joyStickY(int v)
 {
     movementObject->m_joyStickY(v);
 
 }
-void l2Btn(int v)
+void _l2Btn(int v)
 {
     movementObject->m_l2Btn(v);
 }
-void r2Btn(int v)
+void _r2Btn(int v)
 {
     movementObject->m_r2Btn(v);
 }
