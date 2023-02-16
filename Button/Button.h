@@ -43,9 +43,9 @@ public:
     Button(int *btn, int *btnValue = &defaultZeroAnalog, int *btnValue1 = &defaultZeroAnalog)
     {
         SetButton();
-        this->currentValue1 = new stateManager(btnValue1, 7, 10);
+        this->currentValue1 = new stateManager(btnValue1, 6, 15);
         this->currentState = new stateManager(btn);
-        this->currentValue = new stateManager(btnValue, 7, 10);
+        this->currentValue = new stateManager(btnValue, 6, 15);
     }
     Button(){};
     void SetButton();
