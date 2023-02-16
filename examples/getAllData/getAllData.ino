@@ -4,55 +4,60 @@ void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
   initPS4("11:11:11:11:11:11");
+  getAllAnalog(false); // true to get AllAnalog Output & false to get AnalogOutput from leftJoystick and l2,r2
+
   //Attaching function with buttons
-  square.attachPress(sqaurePressed);
-  square.attachRelease(sqaureReleased);
+  square->attachPress(sqaurePressed);
+  square->attachRelease(sqaureReleased);
 
-  circle.attachPress(circlePressed);
-  circle.attachRelease(circleReleased);
+  circle->attachPress(circlePressed);
+  circle->attachRelease(circleReleased);
 
-  triangle.attachPress(trianglePressed);
-  triangle.attachRelease(triangleReleased);
+  triangle->attachPress(trianglePressed);
+  triangle->attachRelease(triangleReleased);
 
-  cross.attachPress(crossPressed);
-  cross.attachRelease(crossReleased);
+  cross->attachPress(crossPressed);
+  cross->attachRelease(crossReleased);
 
-  up.attachPress(upPressed);
-  up.attachRelease(upReleased);
+  up->attachPress(upPressed);
+  up->attachRelease(upReleased);
 
-  down.attachPress(downPressed);
-  down.attachRelease(downReleased);
+  down->attachPress(downPressed);
+  down->attachRelease(downReleased);
 
-  left.attachPress(leftPressed);
-  left.attachRelease(leftReleased);
+  left->attachPress(leftPressed);
+  left->attachRelease(leftReleased);
 
-  right.attachPress(rightPressed);
-  right.attachRelease(rightReleased);
+  right->attachPress(rightPressed);
+  right->attachRelease(rightReleased);
 
-  l1.attachPress(l1Pressed);
-  l1.attachRelease(l1Released);
+  l1->attachPress(l1Pressed);
+  l1->attachRelease(l1Released);
 
-  r1.attachPress(r1Pressed);
-  r1.attachRelease(r1Released);
+  r1->attachPress(r1Pressed);
+  r1->attachRelease(r1Released);
 
 
-  rJoystick.attachAnalogX(rightjoystickX);
-  rJoystick.attachAnalogY(rightjoystickY);
+  // rJoystick->attachAnalogX(rightjoystickX);
+  // rJoystick->attachAnalogY(rightjoystickY);
 
-  share.attachPress(sharePressed);
-  share.attachRelease(shareReleased);
+  // lJoystick->attachAnalogX(leftjoystickX);
+  // lJoystick->attachAnalogY(leftjoystickY);
 
-  options.attachPress(optionPressed);
-  options.attachRelease(optionReleased);
+  share->attachPress(sharePressed);
+  share->attachRelease(shareReleased);
 
-  psButton.attachPress(psPressed);
-  psButton.attachRelease(psReleased);
+  options->attachPress(optionPressed);
+  options->attachRelease(optionReleased);
 
-  touchpad.attachPress(touchpadPressed);
-  touchpad.attachRelease(touchpadReleased);
+  psButton->attachPress(psPressed);
+  psButton->attachRelease(psReleased);
 
-  leftJoystick.attachAllData(base);
-  
+  touchpad->attachPress(touchpadPressed);
+  touchpad->attachRelease(touchpadReleased);
+
+  // leftJoystick->attachAllData(base); //for analogOutput from leftJoystick,L2 & R2
+  allAnalog->attachAllAnalogData(directionalBase); // comment this to get AnalogOutput from leftJoystick, l2, r2 and uncomment leftJoystick
 }
 int lx,ly,rightX,rightY;
 void loop() {
@@ -196,4 +201,8 @@ void touchpadReleased()
 void base(int x,int y,int r)
 {
   Serial.println("X="+String(x)+" ,Y="+String(y)+" ,R="+String(r));
+}
+void directionalBase(int lX,int lY,int rX,int rY,int r)
+{
+  Serial.println("lX: "+String(lX)+" lY: "+String(lY)+" rX: "+String(rX)+" lY: "+String(rY)+" R: "+String(r));
 }
