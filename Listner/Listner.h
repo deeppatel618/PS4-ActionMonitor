@@ -1,13 +1,13 @@
-class Listner{
-    public:
-    bool *btnStatus;
-    Listner(bool *btn)
-    {
-        this->btnStatus=btn;
+// class Listner{
+//     public:
+//     bool *btnStatus;
+//     Listner(bool *btn)
+//     {
+//         this->btnStatus=btn;
         
-    }
-    bool check()
-    {
-        return *btnStatus;
-    }
-};
+//     }
+//     bool check()
+//     {
+//         return *btnStatus;
+//     }
+// };
