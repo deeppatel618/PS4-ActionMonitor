@@ -9,7 +9,7 @@ public:
     Button *joyStick;
     Button *r2, *l2;
     void attachObject();
-    double outputX,outputY,outputR;
+    double outputX=0,outputY=0,outputR=0;
     void (*allDataValueChange)(int x,int y,int r) = none;
     Movement(Button *joyStick, Button *r2, Button *l2)
     {
@@ -28,6 +28,7 @@ public:
     }
     void m_joyStickX(int v)
     {
+        // Serial.println("m_joyStickX: "+ (String)v);
         if (v != 0)
             outputX = map(v, -128, 127, -255, 255);
         else
@@ -36,6 +37,7 @@ public:
     }
     void m_joyStickY(int v)
     {
+        // Serial.println("m_joyStickY: "+ (String)v);
         if (v != 0)
             outputY = map(v, -128, 127, -255, 255);
         else
@@ -44,11 +46,13 @@ public:
     }
     void m_l2Btn(int v)
     {
+        // Serial.println("m_l2Btn: "+ (String)v);
         outputR=v*(-1);
         sendData();
     }
     void m_r2Btn(int v)
     {
+        // Serial.println("m_r2Btn: "+ (String)v);
         outputR=v;
         sendData();
     }
