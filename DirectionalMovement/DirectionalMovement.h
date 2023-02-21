@@ -12,7 +12,7 @@ public:
     Button *rightJoyStick;
     Button *r2, *l2;
     void attachObject();
-    double outputRightX,outputRightY,outputLeftX,outputLeftY,outputR;
+    double outputRightX=0,outputRightY=0,outputLeftX=0,outputLeftY=0,outputR=0;
     void (*allDataValueChange)(int lX,int lY,int rX,int rY,int r) = none;
     DirectionalMovement(){};
     DirectionalMovement(Button *leftJoyStick,Button *rightJoyStick, Button *r2, Button *l2)
